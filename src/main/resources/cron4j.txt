@@ -1,0 +1,15 @@
+
+cron4j = task1
+
+
+### 分 时 天 月 周  30分执行
+### daemon  被调度的任务线程是否为守护线程
+### enable  开启还是停用
+### class   该 task 要调度的目标 java类，该 java 类需要实现 Runnable 接口
+
+#### 从启动的第0分钟开始  每30分钟调用一次
+task1.cron   = 5/3 * * * *
+task1.class  = com.hrz.seven.concise.core.CrawlerTask
+task1.daemon = true
+task1.enable = true
+

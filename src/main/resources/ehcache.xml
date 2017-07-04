@@ -1,0 +1,63 @@
+<ehcache updateCheck="false" dynamicConfig="false">
+    <diskStore path="java.io.tmpdir"/>
+
+    <!-- 模拟session，用于用户状态，缓存5s
+     如果只有 timeToLiveSeconds   x 那么 自创建时间开始 间隔x后缓存失效；
+     如果只有 timeToIdleSeconds   y 即多长时间不访问该缓存，那么ehcache就会清除该缓存；
+     -->
+    <!-- 存活10s  但是2s未使用就清理（在创建时间跟最新访问时间中获取最新时间）-->
+    <cache name="test"
+           maxElementsInMemory="1"
+           eternal="false"
+           timeToIdleSeconds="2"
+           timeToLiveSeconds="10"
+           maxElementsOnDisk="100"
+           overflowToDisk="false"
+    />
+
+    <!--邮箱验证  60s-->
+    <cache name="loginingCode"
+           maxElementsInMemory="1"
+           eternal="false"
+           timeToLiveSeconds="60"
+           maxElementsOnDisk="10"
+           overflowToDisk="false"
+    />
+
+
+    <cache name="crawler"
+           maxElementsInMemory="10"
+           eternal="false"
+           maxElementsOnDisk="10"
+           overflowToDisk="true"
+    />
+
+
+    <!--
+        name:缓存名称。
+        maxElementsInMemory：缓存最大个数。
+        eternal:对象是否永久有效，一但设置了，timeout将不起作用。
+        timeToIdleSeconds：设置对象在失效前的允许闲置时间（单位：秒）。仅当eternal=false对象不是永久有效时使用，可选属性，默认值是0，也就是可闲置时间无穷大。
+        timeToLiveSeconds：设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。
+        overflowToDisk：当内存中对象数量达到maxElementsInMemory时，Ehcache将会对象写到磁盘中。
+        diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。
+        maxElementsOnDisk：硬盘最大缓存个数。
+        diskPersistent：是否缓存虚拟机重启期数据 Whether the disk store persists between restarts of the Virtual Machine. The default value is false.
+        diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是 120 秒。
+        memoryStoreEvictionPolicy：当达到 maxElementsInMemory 限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。
+        clearOnFlush：内存数量最大时是否清除。
+ -->
+
+    <defaultCache name="defaultCache"
+                  maxElementsInMemory="10000"
+                  eternal="false"
+                  timeToIdleSeconds="1800"
+                  timeToLiveSeconds="3600"
+                  overflowToDisk="true"
+                  maxElementsOnDisk="10000000"
+                  diskPersistent="false"
+                  diskExpiryThreadIntervalSeconds="120"
+                  memoryStoreEvictionPolicy="LRU"
+    />
+
+</ehcache>

@@ -1,0 +1,30 @@
+group 'com.hrz.seven'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'maven'
+
+
+repositories {
+    mavenLocal();
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+    compile(
+            'com.jfinal:jfinal:3.1',
+            'com.alibaba:fastjson:1.2.17',
+            'com.alibaba:druid:1.0.15',
+            'mysql:mysql-connector-java:5.1.39',
+            'com.jfinal:cos:26Dec2008',
+            'org.slf4j:slf4j-api:1.7.21',
+            'ch.qos.logback:logback-core:1.1.7',
+            'ch.qos.logback:logback-classic:1.1.7',
+            'com.sun.mail:javax.mail:1.5.5',
+            'it.sauronsoftware.cron4j:cron4j:2.2.5',
+            'us.codecraft:webmagic-extension:0.5.3',
+            'javax.websocket:javax.websocket-api:1.1',
+            'us.codecraft:webmagic-core:0.5.3'
+    )
+}
